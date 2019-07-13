@@ -3,21 +3,24 @@ package com.example.semoto.epoxysamples
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.semoto.epoxysamples.fragment.InScrollViewEpoxyFragment
 import com.example.semoto.epoxysamples.fragment.SimpleEpoxyFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val exampleCase = ExampleCase.SIMPLE
+    private val exampleCase = ExampleCase.IN_SCROLLVIEW
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         when (exampleCase) {
             ExampleCase.SIMPLE -> {
                 setFragment(SimpleEpoxyFragment())
             }
-            ExampleCase.IN_SCROLLVIEW -> {}
+            ExampleCase.IN_SCROLLVIEW -> {
+                setFragment(InScrollViewEpoxyFragment())
+            }
         }
     }
 

@@ -14,15 +14,16 @@
             android:layout_height="wrap_content">
 
         <TextView
-                android:text="@{text}"
+                android:id="@+id/textSimpleHeader"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:id="@+id/textSimple"
+                android:text="@{text}"
                 android:gravity="center"
+                android:background="@android:color/holo_blue_light"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:background="@android:color/holo_blue_light"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

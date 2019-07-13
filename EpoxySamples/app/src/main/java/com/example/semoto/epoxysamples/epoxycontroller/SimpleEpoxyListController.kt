@@ -6,35 +6,28 @@ import com.example.semoto.epoxysamples.TextItemBindingModel_
 
 class SimpleEpoxyListController: Typed2EpoxyController<List<String>, List<String>>() {
 
-    override fun buildModels(headers: List<String>?,items: List<String>?) {
+    override fun buildModels(
+        headers: List<String>?,
+        items: List<String>?
+    ) {
 
         headers ?: return
         items ?: return
 
-        TextHeaderBindingModel_()
-            .id(headers[0])
-            .text(headers[0])
-            .addTo(this)
+        headers.forEachIndexed { index, header ->
 
-        items.forEachIndexed { index, text ->
-
-            TextItemBindingModel_()
-                .id("TextItemBindingModel_1", index.toLong())
-                .text(text)
+            TextHeaderBindingModel_()
+                .id(header, index.toLong())
+                .text(header)
                 .addTo(this)
-        }
 
-        TextHeaderBindingModel_()
-            .id(headers[1])
-            .text(headers[1])
-            .addTo(this)
+            items.forEachIndexed { indexItem, text ->
 
-        items.forEachIndexed { index, text ->
-
-            TextItemBindingModel_()
-                .id("TextItemBindingModel_2", index.toLong())
-                .text(text)
-                .addTo(this)
+                TextItemBindingModel_()
+                    .id("TextItemBindingModel_$index", indexItem.toLong())
+                    .text(text)
+                    .addTo(this)
+            }
         }
     }
 }
