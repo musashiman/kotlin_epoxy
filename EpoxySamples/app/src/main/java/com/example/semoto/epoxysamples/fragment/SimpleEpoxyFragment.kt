@@ -26,9 +26,14 @@ class SimpleEpoxyFragment : Fragment() {
         binding = FragmentSimpleEpoxyBinding.inflate(inflater)
 
         val controller = SimpleEpoxyListController()
-        controller.setData(listOf(
-            "A","B","C","D","E","F"
-        ))
+        controller.setData(
+            listOf(
+                "header1","header2"
+            ),
+            listOf(
+                "A","B","C","D","E","F"
+            )
+        )
         binding.simpleTextEpoxyRecyclerView.setController(controller)
 
         getSupportActionBar()?.title = "Simple Epoxy Example"
