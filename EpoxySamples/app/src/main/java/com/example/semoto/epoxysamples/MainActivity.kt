@@ -3,12 +3,14 @@ package com.example.semoto.epoxysamples
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.semoto.epoxysamples.epoxycontroller.SimpleEpoxyListController
+import com.example.semoto.epoxysamples.epoxycontroller.SingleSelectionEpoxyListController
 import com.example.semoto.epoxysamples.fragment.InScrollViewEpoxyFragment
 import com.example.semoto.epoxysamples.fragment.SimpleEpoxyFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val exampleCase = ExampleCase.IN_SCROLLVIEW
+    private val exampleCase = ExampleCase.SINGLE_SELECTION
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,10 +18,13 @@ class MainActivity : AppCompatActivity() {
 
         when (exampleCase) {
             ExampleCase.SIMPLE -> {
-                setFragment(SimpleEpoxyFragment())
+                setFragment(SimpleEpoxyFragment.setController(SimpleEpoxyListController()))
             }
             ExampleCase.IN_SCROLLVIEW -> {
                 setFragment(InScrollViewEpoxyFragment())
+            }
+            ExampleCase.SINGLE_SELECTION -> {
+                setFragment(SimpleEpoxyFragment.setController(SingleSelectionEpoxyListController()))
             }
         }
     }
@@ -34,5 +39,5 @@ class MainActivity : AppCompatActivity() {
 }
 
 enum class ExampleCase {
-    SIMPLE, IN_SCROLLVIEW
+    SIMPLE, IN_SCROLLVIEW, SINGLE_SELECTION
 }

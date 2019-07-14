@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.airbnb.epoxy.Typed2EpoxyController
 import com.example.semoto.epoxysamples.databinding.FragmentSimpleEpoxyBinding
-import com.example.semoto.epoxysamples.epoxycontroller.SimpleEpoxyListController
 
 
 /**
@@ -18,6 +18,8 @@ class SimpleEpoxyFragment : Fragment() {
 
     private lateinit var binding: FragmentSimpleEpoxyBinding
 
+    private lateinit var controller: Typed2EpoxyController<List<String>, List<String>>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +27,6 @@ class SimpleEpoxyFragment : Fragment() {
 
         binding = FragmentSimpleEpoxyBinding.inflate(inflater)
 
-        val controller = SimpleEpoxyListController()
         controller.setData(
             listOf(
                 "header1","header2"
@@ -41,5 +42,16 @@ class SimpleEpoxyFragment : Fragment() {
         return binding.root
     }
 
+    companion object {
 
+        private var instance: SimpleEpoxyFragment? = null
+
+        fun setController(controller: Typed2EpoxyController<List<String>, List<String>>) : SimpleEpoxyFragment {
+            if (instance == null) {
+                instance = SimpleEpoxyFragment()
+                instance!!.controller = controller
+            }
+            return instance!!
+        }
+    }
 }
