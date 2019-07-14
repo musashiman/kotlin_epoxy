@@ -10,7 +10,7 @@ import com.example.semoto.epoxysamples.TextItemBindingModel_
 
 class SingleSelectionEpoxyListController: Typed2EpoxyController<List<String>, List<String>>() {
 
-    private var selectedItem = Pair(-1, -1)
+    private var selectedItemIndex = Pair(-1, -1)
 
     override fun buildModels(
         headers: List<String>?,
@@ -31,19 +31,19 @@ class SingleSelectionEpoxyListController: Typed2EpoxyController<List<String>, Li
 
                 TextItemBindingModel_()
                     .id("TextItemBindingModel_$index", indexItem.toLong())
-                    .text(text).onBind { model, view, position ->
-                        val id = model.id()
-                        val selectedItenIndex = Pair(index, indexItem)
+                    .text(text).onBind { _, view, _ ->
+
+                        val itemIndex = Pair(index, indexItem)
                         val cardView = view.dataBinding.root.findViewById<CardView>(R.id.textCard)
-                        if (selectedItenIndex == selectedItem) {
+                        if (itemIndex == selectedItemIndex) {
                             cardView.setCardBackgroundColor(Color.LTGRAY)
                         } else {
                             cardView.setCardBackgroundColor(Color.WHITE)
                         }
                     }
                     .listener(View.OnClickListener {
-                        if (selectedItem != Pair(index, indexItem)) {
-                            selectedItem = Pair(index, indexItem)
+                        if (selectedItemIndex != Pair(index, indexItem)) {
+                            selectedItemIndex = Pair(index, indexItem)
                             setData(headers, items)
                         }
                     })
