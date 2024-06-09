@@ -30,4 +30,26 @@ class SimpleEpoxyListController: Typed2EpoxyController<List<String>, List<String
             }
         }
     }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val controller = SimpleEpoxyListController()
+
+        // setData()でデータを渡すとbuildModels()が呼ばれる
+        controller.setData(
+            listOf(
+                "header1","header2"
+            ),
+            listOf(
+                "A","B","C","D","E","F"
+            )
+        )
+
+        // EpoxyRecyclerViewに4.で自作したTypedEpoxyControllerを継承したControllerをセット
+        binding.simpleTextEpoxyRecyclerView.setController(controller)
+
+        return binding.root
+    }
 }

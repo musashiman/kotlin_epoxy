@@ -52,3 +52,46 @@ class SingleSelectionEpoxyListController: Typed2EpoxyController<List<String>, Li
         }
     }
 }
+
+class SimpleEpoxyListController
+    : Typed2EpoxyController<List<String>, List<String>>() {
+
+    override fun buildModels(
+        headers: List<String>?,
+        items: List<String>?
+    ) {
+
+        headers ?: return
+        items ?: return
+
+        // １つ目のSection Header
+        TextHeaderBindingModel_()
+            .id(headers[0], 0.toLong())
+            .text(headers[0])
+            .addTo(this)
+
+        // １つ目のitemリスト
+        items.forEachIndexed { indexItem, text ->
+
+            TextItemBindingModel_()
+                .id("TextItemBindingModel_0", indexItem.toLong())
+                .text(text)
+                .addTo(this)
+        }
+
+        // ２つ目のSection Header
+        TextHeaderBindingModel_()  // <- １つ目のSection Header
+            .id(headers[1], 1.toLong())
+            .text(headers[1])
+            .addTo(this)
+
+        // ２つ目のitemリスト
+        items.forEachIndexed { indexItem, text ->
+
+            TextItemBindingModel_()
+                .id("TextItemBindingModel_1", indexItem.toLong())
+                .text(text)
+                .addTo(this)
+        }
+    }
+}
